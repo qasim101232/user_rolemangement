@@ -1,0 +1,305 @@
+/* Main merged CSS for the Login page and shared UI.
+   Requirement: no inline CSS, and all CSS must live in a single app.css file.
+*/
+
+/* ===== CSS Variables ===== */
+:root {
+  --primary-color: #3182ce; /* Blue */
+  --primary-dark: #1d4ed8;
+  --secondary-color: #ffffff; /* White */
+  --background-color: #fcf8f5; /* Creamy White */
+  --text-color: #1a365d; /* Dark Blue */
+  --accent-color: #e2e8f0; /* Light Gray */
+
+  --danger-color: #ef4444;
+  --success-color: #10b981;
+
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ===== Login ===== */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--background-color);
+}
+
+.login-box {
+  background: var(--secondary-color);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 420px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.login-header p {
+  color: rgba(26, 54, 93, 0.7);
+  font-size: 0.95rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(26, 54, 93, 0.85);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background: var(--secondary-color);
+  font-family: inherit;
+  color: var(--text-color);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.12);
+}
+
+.error-message {
+  color: #b91c1c;
+  font-size: 0.9rem;
+  padding: 0.7rem 1rem;
+  background: #fef2f2;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: var(--primary-dark);
+  box-shadow: 0 4px 14px rgba(49, 130, 206, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  color: rgba(26, 54, 93, 0.6);
+  font-size: 0.85rem;
+}
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Searchable Dropdown ===== */
+.searchable-dropdown {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.searchable-dropdown label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(26, 54, 93, 0.85);
+}
+
+.dropdown-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  background: var(--secondary-color);
+  transition: var(--transition);
+}
+
+.dropdown-input.focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.12);
+}
+
+.dropdown-input.error {
+  border-color: var(--danger-color);
+}
+
+.dropdown-input input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text-color);
+}
+
+.dropdown-arrow {
+  padding: 0 1rem;
+  color: rgba(26, 54, 93, 0.5);
+  transition: transform 0.3s;
+  font-size: 0.75rem;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--secondary-color);
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0.25rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-list li {
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-list li:hover {
+  background: rgba(49, 130, 206, 0.12);
+}
+
+.dropdown-list li.selected {
+  background: rgba(49, 130, 206, 0.12);
+  font-weight: 700;
+}
+
+.dropdown-list .check-mark {
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.dropdown-list .no-results {
+  color: rgba(26, 54, 93, 0.5);
+  cursor: default;
+  text-align: center;
+  padding: 1rem;
+}
+
+.dropdown-error {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+}
+
